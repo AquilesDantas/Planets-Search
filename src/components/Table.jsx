@@ -1,30 +1,8 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import SWcontext from '../context/SWcontext';
 
-function headerTable() {
-  return (
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Rotation period</th>
-        <th>Orbital period</th>
-        <th>Diameter</th>
-        <th>Climate</th>
-        <th>Gravity</th>
-        <th>Terrain</th>
-        <th>Surface water</th>
-        <th>Population</th>
-        <th>Films</th>
-        <th>Created</th>
-        <th>Edited</th>
-        <th>URL</th>
-      </tr>
-    </thead>
-  );
-}
-
-function infoTable(data) {
-  if (data !== undefined) {
+function infoTable(data, filteredName) {
+  if (data && filteredName === '') {
     return (
       <tbody>
         {data.map((item) => (
@@ -47,19 +25,16 @@ function infoTable(data) {
       </tbody>
     );
   }
+  return null;
 }
 
 export default function Table() {
+  const { data, filterByName } = useContext(SWcontext);
+  const filteredName = filterByName.name;
+
   return (
-    <SWcontext.Consumer>
-      {
-        (data) => (
-          <table>
-            {headerTable()}
-            {infoTable(data)}
-          </table>
-        )
-      }
-    </SWcontext.Consumer>
+    <>
+      {infoTable(data, filteredName)}
+    </>
   );
 }

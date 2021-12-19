@@ -5,6 +5,9 @@ import SWcontext from './context/SWcontext';
 
 function App() {
   const [planetsList, setPlanetsList] = useState([]);
+  const [filterByName, setFilterByName] = useState({
+    name: '',
+  });
 
   useEffect(() => {
     async function fetchData() {
@@ -17,10 +20,12 @@ function App() {
 
   const contextValue = {
     data: planetsList.results,
+    setFilterByName,
+    filterByName,
   };
 
   return (
-    <SWcontext.Provider value={ contextValue.data }>
+    <SWcontext.Provider value={ contextValue }>
       <div>
         <InitialPage />
       </div>
