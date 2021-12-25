@@ -16,6 +16,16 @@ export default function SWprovider({ children }) {
     },
   );
 
+  const [saveFilterByNumericValues, setSaveFilterByNumericValues] = useState([]);
+
+  const [optionsNumericValues, setOptionsNumericValues] = useState([
+    'population',
+    'orbital_period',
+    'diameter',
+    'rotation_period',
+    'surface_water',
+  ]);
+
   useEffect(() => {
     async function fetchData() {
       const response = await fetch('https://swapi-trybe.herokuapp.com/api/planets/');
@@ -33,6 +43,10 @@ export default function SWprovider({ children }) {
     setFilterByNumericValues,
     keys,
     setKeys,
+    optionsNumericValues,
+    setOptionsNumericValues,
+    saveFilterByNumericValues,
+    setSaveFilterByNumericValues,
   };
 
   return (

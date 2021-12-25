@@ -1,22 +1,6 @@
 import React, { useContext } from 'react';
 import SWcontext from '../context/SWcontext';
 
-function columnFilter(filterValues, setfilterValues) {
-  return (
-    <select
-      data-testid="column-filter"
-      value={ filterValues.column }
-      onChange={ (e) => setfilterValues({ ...filterValues, column: e.target.value }) }
-    >
-      <option value="population">population</option>
-      <option value="orbital_period">orbital_period</option>
-      <option value="diameter">diameter</option>
-      <option value="rotation_period">rotation_period</option>
-      <option value="surface_water">surface_water</option>
-    </select>
-  );
-}
-
 function comparisonFilter(filterValues, setfilterValues) {
   return (
     <select
@@ -95,16 +79,39 @@ export default function Filter() {
     setFilterByNumericValues,
     keys,
     setKeys,
+    optionsNumericValues,
+    setOptionsNumericValues,
   } = useContext(SWcontext);
+
+  function removeOptionFilter() {
+    return (
+      setOptionsNumericValues(optionsNumericValues.filter((option) => (
+        option !== filterByNumericValues.column
+      )))
+    );
+  }
+
   return (
     <div>
-      {columnFilter(filterByNumericValues, setFilterByNumericValues)}
+      <select
+        data-testid="column-filter"
+        value={ filterByNumericValues.column }
+        onChange={ (e) => setFilterByNumericValues({
+          ...filterByNumericValues, column: e.target.value }) }
+      >
+        {optionsNumericValues.map((option) => (
+          <option key={ option } value={ option }>{ option }</option>
+        ))}
+      </select>
       {comparisonFilter(filterByNumericValues, setFilterByNumericValues)}
       {valueFilter(filterByNumericValues, setFilterByNumericValues)}
       <button
         data-testid="button-filter"
         type="button"
-        onClick={ () => handleButtonFilter(keys, setKeys) }
+        onClick={ () => {
+          handleButtonFilter(keys, setKeys);
+          removeOptionFilter();
+        } }
       >
         Filtrar
       </button>
