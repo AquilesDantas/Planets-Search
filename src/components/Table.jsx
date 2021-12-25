@@ -1,10 +1,6 @@
 import React, { useContext } from 'react';
 import SWcontext from '../context/SWcontext';
 
-function infoTable(data, filteredName) {
-
-}
-
 export default function Table() {
   const { data, filterByName, keys } = useContext(SWcontext);
   const { filteredValuesKey } = keys;
