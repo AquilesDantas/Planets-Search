@@ -2,7 +2,15 @@ import React, { useContext } from 'react';
 import SWcontext from '../context/SWcontext';
 
 function infoTable(data, filteredName) {
-  if (data && filteredName === '') {
+
+}
+
+export default function Table() {
+  const { data, filterByName, keys } = useContext(SWcontext);
+  const { filteredValuesKey } = keys;
+  const filteredName = filterByName.name;
+
+  if (data && filteredName === '' && !filteredValuesKey) {
     return (
       <tbody>
         {data.map((item) => (
@@ -26,15 +34,4 @@ function infoTable(data, filteredName) {
     );
   }
   return null;
-}
-
-export default function Table() {
-  const { data, filterByName } = useContext(SWcontext);
-  const filteredName = filterByName.name;
-
-  return (
-    <>
-      {infoTable(data, filteredName)}
-    </>
-  );
 }

@@ -4,6 +4,7 @@ import HeaderTable from '../components/HeaderTable';
 import Table from '../components/Table';
 import FilteredByName from '../components/FilteredByName';
 import RenderFilteredByName from '../components/RenderFilteredByName';
+import RenderFilteredByNumericValues from '../components/RenderFilteredByNumericValues';
 
 export default function initialPage() {
   return (
@@ -15,6 +16,7 @@ export default function initialPage() {
         <HeaderTable />
         <Table />
         <RenderFilteredByName />
+        <RenderFilteredByNumericValues />
       </table>
     </div>
   );

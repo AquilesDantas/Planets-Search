@@ -2,9 +2,10 @@ import React, { useContext } from 'react';
 import SWcontext from '../context/SWcontext';
 
 export default function RenderFilteredByName() {
-  const { data, filterByName } = useContext(SWcontext);
+  const { data, filterByName, keys } = useContext(SWcontext);
+  const { filteredValuesKey } = keys;
 
-  if (data && filterByName) {
+  if (data && filterByName && !filteredValuesKey) {
     return (
       <tbody>
         {data.filter((planet) => (planet.name).includes(filterByName)).map((item) => (
@@ -27,7 +28,7 @@ export default function RenderFilteredByName() {
       </tbody>
     );
   }
-  if (data) {
+  if (data && !filteredValuesKey) {
     return (
       <tbody>
         {data.map((planet) => (
