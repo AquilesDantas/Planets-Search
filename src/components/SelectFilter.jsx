@@ -4,15 +4,16 @@ import SWcontext from '../context/SWcontext';
 function comparisonFilter(filterValues, setfilterValues) {
   return (
     <select
+      className="h4 text-light bg-dark"
       data-testid="comparison-filter"
       name="comparison"
       id="comparison"
       value={ filterValues.comparison }
       onChange={ (e) => setfilterValues({ ...filterValues, comparison: e.target.value }) }
     >
-      <option value="maior que">maior que</option>
-      <option value="igual a">igual a</option>
-      <option value="menor que">menor que</option>
+      <option value="maior que">greater than</option>
+      <option value="igual a">equal to</option>
+      <option value="menor que">less than</option>
     </select>
   );
 }
@@ -20,43 +21,12 @@ function comparisonFilter(filterValues, setfilterValues) {
 function valueFilter(filterValues, setfilterValues) {
   return (
     <input
+      className="h4 text-light bg-dark"
       data-testid="value-filter"
       type="number"
       value={ filterValues.value }
       onChange={ (e) => setfilterValues({ ...filterValues, value: e.target.value }) }
     />
-  );
-}
-
-function orderFilter() {
-  return (
-    <select
-      name="order"
-      id="order"
-      value={ 3 }
-      onChange={ 3 }
-    >
-      <option value="">Rotation period</option>
-      <option value="">Orbital period</option>
-      <option value="">Diameter</option>
-      <option value="">Surface water</option>
-      <option value="">Population</option>
-    </select>
-  );
-}
-
-function sequenceFilter() {
-  return (
-    <>
-      <label htmlFor="sequence-asc">
-        Ascendente
-        <input type="radio" name="sequence-asc" />
-      </label>
-      <label htmlFor="sequence-desc">
-        Descendente
-        <input type="radio" name="sequence-desc" />
-      </label>
-    </>
   );
 }
 
@@ -93,31 +63,34 @@ export default function Filter() {
 
   return (
     <div>
-      <select
-        data-testid="column-filter"
-        value={ filterByNumericValues.column }
-        onChange={ (e) => setFilterByNumericValues({
-          ...filterByNumericValues, column: e.target.value }) }
-      >
-        {optionsNumericValues.map((option) => (
-          <option key={ option } value={ option }>{ option }</option>
-        ))}
-      </select>
-      {comparisonFilter(filterByNumericValues, setFilterByNumericValues)}
-      {valueFilter(filterByNumericValues, setFilterByNumericValues)}
-      <button
-        data-testid="button-filter"
-        type="button"
-        onClick={ () => {
-          handleButtonFilter(keys, setKeys);
-          removeOptionFilter();
-        } }
-      >
-        Filtrar
-      </button>
-      {orderFilter()}
-      {sequenceFilter()}
-      <button type="button">Ordenar</button>
+      <label htmlFor="selectParameters" className="h4 text-warning">
+        <h4>Search by parameters:</h4>
+        <select
+          className="h4 text-light bg-dark"
+          id="selectParameters"
+          data-testid="column-filter"
+          value={ filterByNumericValues.column }
+          onChange={ (e) => setFilterByNumericValues({
+            ...filterByNumericValues, column: e.target.value }) }
+        >
+          {optionsNumericValues.map((option) => (
+            <option key={ option } value={ option }>{ option }</option>
+          ))}
+        </select>
+        {comparisonFilter(filterByNumericValues, setFilterByNumericValues)}
+        {valueFilter(filterByNumericValues, setFilterByNumericValues)}
+        <button
+          className="btn btn-outline-warning btn-md"
+          data-testid="button-filter"
+          type="button"
+          onClick={ () => {
+            handleButtonFilter(keys, setKeys);
+            removeOptionFilter();
+          } }
+        >
+          Filter
+        </button>
+      </label>
     </div>
   );
 }
