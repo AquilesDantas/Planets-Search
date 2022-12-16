@@ -11,7 +11,7 @@ import './initialPage.css';
 export default function initialPage() {
   return (
     <div className="align-middle">
-      <h1 className="header text-warning row d-flex justify-content-center">Star Wars - Planet Search</h1>
+      <h1 className="header text-warning row d-flex justify-content-center">Star Wars - Planets Search</h1>
       <div>
         <FilteredByName />
         <SelectFilter />
