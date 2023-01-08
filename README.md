@@ -11,12 +11,12 @@ Stacks utilizadas: Javascript, React, React Hooks, Context API, CSS e Bootstrap.
 
 1. Clone o repositório:
 ```
-  git clone git@github.com:saraivais/star-wars-planet-search.git
+  git@github.com:aquilessouza/Planets-Search.git
 ```
 
 2. Entre no diretório do projeto:
 ```
-  cd star-wars-planet-search
+  cd Planets-search
 ```
 
 3. Instale as dependências:
