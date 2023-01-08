@@ -11,7 +11,7 @@ Stacks utilizadas: Javascript, React, React Hooks, Context API, CSS e Bootstrap.
 
 1. Clone o repositório:
 ```
-  git@github.com:aquilessouza/Planets-Search.git
+  git clone git@github.com:aquilessouza/Planets-Search.git
 ```
 
 2. Entre no diretório do projeto:
